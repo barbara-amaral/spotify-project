@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="dots">
+    <a href="#">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </a>
+  </div>
+
+  <div class="sidebar-icons">
+    <svg
+      data-encore-id="icon"
+      role="img"
+      aria-hidden="true"
+      class="home-icon icon"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path
+        d="M12.5 3.247a1 1 0 0 0-1 0L4 7.577V20h4.5v-6a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v6H20V7.577l-7.5-4.33zm-2-1.732a3 3 0 0 1 3 0l7.5 4.33a2 2 0 0 1 1 1.732V21a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1v-6h-3v6a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V7.577a2 2 0 0 1 1-1.732l7.5-4.33z"
+      ></path>
+    </svg>
+
+    <svg
+      data-encore-id="icon"
+      role="img"
+      aria-hidden="true"
+      class="search-icon icon"
+      viewBox="0 0 24 24"
+      width="24"
+      height="24"
+    >
+      <path
+        d="M10.533 1.27893C5.35215 1.27893 1.12598 5.41887 1.12598 10.5579C1.12598 15.697 5.35215 19.8369 10.533 19.8369C12.767 19.8369 14.8235 19.0671 16.4402 17.7794L20.7929 22.132C21.1834 22.5226 21.8166 22.5226 22.2071 22.132C22.5976 21.7415 22.5976 21.1083 22.2071 20.7178L17.8634 16.3741C19.1616 14.7849 19.94 12.7634 19.94 10.5579C19.94 5.41887 15.7138 1.27893 10.533 1.27893ZM3.12598 10.5579C3.12598 6.55226 6.42768 3.27893 10.533 3.27893C14.6383 3.27893 17.94 6.55226 17.94 10.5579C17.94 14.5636 14.6383 17.8369 10.533 17.8369C6.42768 17.8369 3.12598 14.5636 3.12598 10.5579Z"
+      ></path>
+    </svg>
+
+    <svg
+      data-encore-id="icon"
+      role="img"
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      class="library-icon icon"
+      width="24"
+      height="24"
+    >
+      <path
+        d="M14.5 2.134a1 1 0 0 1 1 0l6 3.464a1 1 0 0 1 .5.866V21a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1V3a1 1 0 0 1 .5-.866zM16 4.732V20h4V7.041l-4-2.309zM3 22a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1zm6 0a1 1 0 0 1-1-1V3a1 1 0 0 1 2 0v18a1 1 0 0 1-1 1z"
+      ></path>
+    </svg>
+
+    <div class="box-playlists">
+      <div
+        class="folder-container"
+        *ngFor="let folder of folders; let i = index"
+      >
+        <img
+          class="folder"
+          [src]="folder.src"
+          [alt]="folder.alt"
+          (mouseenter)="showDropdown = i"
+          (mouseleave)="showDropdown = null"
+        />
+        <div class="dropdown" *ngIf="showDropdown === i">
+          <span
+            class="dropdown-text"
+            [ngClass]="{
+              'liked-songs': folder.songsQuantity,
+              episodes: !folder.songsQuantity
+            }"
+            >{{ folder.text }}</span
+          >
+          <div class="dropdown-bottom">
+            <svg
+              *ngIf="!folder.playlist"
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              viewBox="0 0 16 16"
+              [ngClass]="{ 'episodes-pin': folder.episodesInformation }"
+              class="pin-icon"
+              width="11"
+              height="11"
+            >
+              <path
+                d="M8.822.797a2.72 2.72 0 0 1 3.847 0l2.534 2.533a2.72 2.72 0 0 1 0 3.848l-3.678 3.678-1.337 4.988-4.486-4.486L1.28 15.78a.75.75 0 0 1-1.06-1.06l4.422-4.422L.156 5.812l4.987-1.337L8.822.797z"
+              ></path>
+            </svg>
+            <span class="information-text">{{ folder.songsQuantity }}</span>
+            <svg
+              *ngIf="folder.songsQuantity"
+              data-encore-id="icon"
+              role="img"
+              aria-hidden="true"
+              class="radio-icon"
+              viewBox="0 0 16 16"
+              width="16"
+              height="16"
+            >
+              <path
+                d="M10.016 1.125A.75.75 0 0 0 8.99.85l-6.925 4a3.639 3.639 0 0 0 0 6.299l6.925 4a.75.75 0 0 0 1.125-.65v-13a.75.75 0 0 0-.1-.375zM11.5 5.56a2.75 2.75 0 0 1 0 4.88V5.56z"
+              ></path>
+              <path
+                d="M16 8a5.752 5.752 0 0 1-4.5 5.614v-1.55a4.252 4.252 0 0 0 0-8.127v-1.55A5.752 5.752 0 0 1 16 8z"
+              ></path>
+            </svg>
+            <span
+              class="information-text"
+              [ngClass]="{
+                'episodes-info': folder.episodesInformation && !folder.playlist
+              }"
+              >{{ folder.episodesInformation }}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
