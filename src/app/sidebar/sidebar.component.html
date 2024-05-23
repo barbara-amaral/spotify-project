@@ -61,6 +61,7 @@
           [alt]="folder.alt"
           (mouseenter)="showDropdown = i"
           (mouseleave)="showDropdown = null"
+          (mouseenter)="onMouseEnter($event)"
         />
         <div class="dropdown" *ngIf="showDropdown === i">
           <span

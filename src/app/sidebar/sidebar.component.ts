@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -85,4 +85,19 @@ export class SidebarComponent {
   ];
 
   showDropdown: number | null = null;
+
+  constructor(private renderer: Renderer2, private el: ElementRef) {}
+
+  onMouseEnter(event: MouseEvent) {
+    const folder = (event.target as HTMLElement).closest('.folder');
+    const dropdown = (event.target as HTMLElement)
+      .closest('.folder-container')
+      ?.querySelector('.dropdown') as HTMLElement;
+
+    if (folder && dropdown) {
+      const rect = folder.getBoundingClientRect();
+      this.renderer.setStyle(dropdown, 'top', `${rect.bottom - 50}px`);
+      this.renderer.setStyle(dropdown, 'left', `${rect.left + 50}px`);
+    }
+  }
 }
