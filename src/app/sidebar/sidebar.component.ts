@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +9,8 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
   styleUrl: './sidebar.component.css',
 })
 export class SidebarComponent {
+  showDropdown: number | null = null;
+
   folders = [
     {
       src: '../../assets/liked-songs.png',
@@ -84,8 +86,6 @@ export class SidebarComponent {
     },
   ];
 
-  showDropdown: number | null = null;
-
   constructor(private renderer: Renderer2, private el: ElementRef) {}
 
   onMouseEnter(event: MouseEvent) {
@@ -96,8 +96,8 @@ export class SidebarComponent {
 
     if (folder && dropdown) {
       const rect = folder.getBoundingClientRect();
-      this.renderer.setStyle(dropdown, 'top', `${rect.bottom - 50}px`);
-      this.renderer.setStyle(dropdown, 'left', `${rect.left + 50}px`);
+      this.renderer.setStyle(dropdown, 'top', `${rect.bottom - 47}px`);
+      this.renderer.setStyle(dropdown, 'left', `${rect.left + 70}px`);
     }
   }
 }
