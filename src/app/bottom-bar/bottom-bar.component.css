@@ -53,3 +53,9 @@
   fill: #b3b3b3;
   display: none;
 }
+
+@media (min-width: 768px) {
+  .container {
+    height: 100vh;
+  }
+}
