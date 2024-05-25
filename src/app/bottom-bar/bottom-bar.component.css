@@ -1,10 +1,12 @@
 .container-bottom {
-  height: 80px;
   background-color: #121212;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+  height: calc(100% - (100vh - 85px));
+  margin-top: 20px;
 }
 
 .song-info {
-  width: 30vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -35,6 +37,13 @@
 .song-name,
 .artist-name {
   font-family: "Plus Jakarta Sans", sans-serif;
+  cursor: pointer;
+}
+
+.song-name:hover,
+.artist-name:hover {
+  text-decoration: underline;
+  color: #fff;
 }
 
 .song-name {
@@ -54,8 +63,59 @@
   display: none;
 }
 
+/* Playing section */
+
+.playing-now:nth-child(2) {
+  grid-column: 2;
+}
+
+.playing-now {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 45px 25px 45px;
+}
+
+.icon__playing {
+  fill: #b3b3b3;
+}
+
+.icon__playing:hover {
+  fill: #fff;
+  cursor: pointer;
+}
+
+.pause-button {
+  width: 32px;
+  height: 32px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.pause-button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.pause-icon {
+  fill: #121212;
+}
+
+.pause-icon:hover {
+  fill: #121212;
+}
+
+/* Responsividade */
+
 @media (orientation: landscape) and (max-width: 915px) {
   .song-info {
-    width: 45vh;
+    width: 40vh;
   }
 }
