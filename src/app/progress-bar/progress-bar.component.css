@@ -1,43 +1,76 @@
-.progress-bar {
-  background-color: #535353;
+.progress {
+  -webkit-appearance: none;
+  appearance: none;
   width: 32.8%;
   height: 4px;
   border-radius: 25px;
+  background: linear-gradient(to right, #fff, #fff) no-repeat;
+  background-size: 0% 100%;
+  background-color: #535353;
+  outline: none;
+  transition: none;
   position: absolute;
   left: 33.8%;
   bottom: 10px;
-  transition: width 5s;
 }
 
-.progress {
-  height: 100%;
-  border-radius: 25px;
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  opacity: 0;
 }
 
-.progress.playing {
-  animation: progressBarAnimation 5s linear forwards;
-  transition: none;
+.progress::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  opacity: 0;
 }
 
-@keyframes progressBarAnimation {
-  0% {
-    width: 0;
-    background-color: #1db954;
-  }
-  50% {
-    width: 50%;
-    background-color: #1db954;
-  }
-  100% {
-    background-color: #1db954;
-    width: 100%;
-  }
+.progress::-ms-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+}
+
+.progress:hover::-webkit-slider-thumb {
+  opacity: 1;
+}
+
+.progress:hover::-moz-range-thumb {
+  opacity: 1;
+}
+
+.progress:hover::-ms-thumb {
+  opacity: 1;
+}
+
+.progress:hover {
+  background: linear-gradient(to right, #1db954, #1db954) no-repeat;
+  background-color: #535353;
 }
 
 /* Responsivo */
 
 @media (max-width: 622px) {
-  .progress-bar {
+  .progress {
     width: 50%;
     left: 25.2%;
   }

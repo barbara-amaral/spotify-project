@@ -1,7 +1,9 @@
-<div class="progress-bar">
-  <div
-    class="progress"
-    [ngStyle]="{ 'width.%': progress }"
-    [style.backgroundColor]="'#1db954'"
-  ></div>
-</div>
+<input
+  type="range"
+  id="myRange"
+  #slider
+  min="0"
+  max="100"
+  [value]="sliderValue"
+  class="progress"
+/>

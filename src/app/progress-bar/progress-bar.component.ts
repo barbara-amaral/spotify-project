@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   Output,
   SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import { BottomBarComponent } from '../bottom-bar/bottom-bar.component';
 
@@ -16,45 +18,56 @@ import { BottomBarComponent } from '../bottom-bar/bottom-bar.component';
   styleUrl: './progress-bar.component.css',
 })
 export class ProgressBarComponent {
-  @Input()
-  isPlaying: boolean = false;
-  @Output()
-  progressChanged = new EventEmitter<number>();
+  @Input() isPlaying: boolean = false;
+  @Output() progressChanged = new EventEmitter<number>();
   @Input() progress: number = 0;
 
+  @ViewChild('slider') slider!: ElementRef;
+
+  sliderValue: number = 0;
   private animationFrameId: number | null = null;
   private startTime: number | null = null;
   private elapsedTime: number = 0;
   private duration: number = 20000;
 
+  ngAfterViewInit(): void {
+    this.updateOutput(this.slider.nativeElement.value);
+    this.slider.nativeElement.oninput = (event: Event) => {
+      const input = event.target as HTMLInputElement;
+      this.updateOutput(Number(input.value));
+    };
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isPlaying']) {
-      console.log(this.isPlaying);
       if (this.isPlaying) {
         this.resumeAnimation();
       } else {
-        console.log('pausou');
         this.pauseAnimation();
       }
     }
   }
 
-  startAnimation(): void {
-    this.progress = 0;
-    this.elapsedTime = 0;
-    this.startTime = performance.now();
-    this.animate();
+  updateOutput(value: number): void {
+    this.sliderValue = value;
+    this.progressChanged.emit(this.sliderValue);
+    this.updateSliderBackground(value);
+  }
+
+  updateSliderBackground(value: number): void {
+    const percentage = (value / this.slider.nativeElement.max) * 100;
+    this.slider.nativeElement.style.backgroundSize = `${percentage}% 100%`;
   }
 
   animate(): void {
     if (!this.startTime) return;
     this.animationFrameId = requestAnimationFrame((timestamp) => {
       const elapsed = timestamp - this.startTime! + this.elapsedTime;
-      this.progress = Math.min((elapsed / this.duration) * 100, 100);
+      const newProgress = Math.min((elapsed / this.duration) * 100, 100);
 
-      this.progressChanged.emit(this.progress);
+      this.updateOutput(newProgress);
 
-      if (this.progress < 100 && this.isPlaying) {
+      if (newProgress < 100 && this.isPlaying) {
         this.animate();
       } else {
         this.isPlaying = false;
@@ -76,5 +89,12 @@ export class ProgressBarComponent {
       this.startTime = performance.now();
       this.animate();
     }
+  }
+
+  startAnimation(): void {
+    this.progress = 0;
+    this.elapsedTime = 0;
+    this.startTime = performance.now();
+    this.animate();
   }
 }
