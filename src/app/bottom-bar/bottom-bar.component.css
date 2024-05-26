@@ -126,15 +126,61 @@
 
 @media (orientation: landscape) and (max-width: 915px) {
   .song-info {
-    width: 40vh;
+    width: 15vh;
+    height: 18vh;
   }
-}
 
-@media (min-width: 816px) {
   .playing-now::before,
   .playing-now::after {
     content: "";
-    display: block;
-    width: 20px;
+    display: none;
+  }
+
+  .playing-now {
+    justify-content: space-evenly;
+  }
+
+  .artist-name {
+    margin: 30px 0 0 75px;
+    text-overflow: ellipsis;
+    overflow: visible;
+    white-space: nowrap;
+  }
+
+  .song-name {
+    font-size: 12px;
+    margin: -70px 0 0 75px;
+    text-overflow: ellipsis;
+    overflow: visible;
+    white-space: nowrap;
+  }
+
+  .playing-icon {
+    margin: 10px 0 0 170px;
+  }
+}
+
+@media (max-width: 430px) {
+  .playing-now::before,
+  .playing-now::after {
+    content: "";
+    display: none;
+  }
+
+  .playing-now {
+    padding: 0;
+    justify-content: space-between;
+  }
+
+  .song-info {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .playing-now::before,
+  .playing-now::after {
+    content: "";
+    display: none;
   }
 }

@@ -7,3 +7,12 @@
   left: 33.8%;
   bottom: 10px;
 }
+
+/* Responsivo */
+
+@media (max-width: 430px) {
+  .progress-bar {
+    width: 50%;
+    left: 25.2%;
+  }
+}
