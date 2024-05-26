@@ -8,6 +8,23 @@
   bottom: 10px;
 }
 
+.progress {
+  height: 100%;
+  background-color: #1db954;
+  border-radius: 25px;
+  animation: animate 5s linear forwards;
+}
+
+@keyframes animate {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
 /* Responsivo */
 
 @media (max-width: 622px) {
