@@ -4,13 +4,13 @@
   align-items: center;
   background-color: #212121;
   width: 73px;
-  height: calc(100vh - 85px);
+  height: calc(100vh - 75px);
   border-radius: 10px;
   overflow: hidden;
 }
 
 .container-bottom {
-  height: calc(100vh - 85px);
+  height: calc(100vh - 75px);
   width: 70px;
   padding-left: 10px;
   overflow-y: hidden;

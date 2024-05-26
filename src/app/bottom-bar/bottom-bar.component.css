@@ -70,12 +70,11 @@
 }
 
 .playing-now {
-  position: relative;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
-  padding: 25px 45px 25px 45px;
+  padding: 0 163px 0 163px;
 }
 
 .icon__playing {
