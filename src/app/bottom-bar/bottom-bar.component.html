@@ -122,5 +122,9 @@
       ></path>
     </svg>
   </div>
-  <app-progress-bar [isPlaying]="play"></app-progress-bar>
+  <app-progress-bar
+    [isPlaying]="play"
+    [progress]="currentProgress"
+    (progressChanged)="onProgressChanged($event)"
+  ></app-progress-bar>
 </div>

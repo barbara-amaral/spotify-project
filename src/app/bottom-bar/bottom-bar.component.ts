@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, SimpleChanges } from '@angular/core';
 import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 import { CommonModule } from '@angular/common';
 
@@ -11,8 +11,14 @@ import { CommonModule } from '@angular/common';
 })
 export class BottomBarComponent {
   play: boolean = false;
+  currentProgress: number = 0;
 
   toggle() {
     this.play = !this.play;
+  }
+
+  onProgressChanged(progress: number) {
+    this.currentProgress = progress;
+    console.log(`Current Progress: ${this.currentProgress}%`);
   }
 }

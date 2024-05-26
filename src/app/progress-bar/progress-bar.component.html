@@ -1,3 +1,7 @@
 <div class="progress-bar">
-  <div class="progress" style="width: 0" *ngIf="isPlaying"></div>
+  <div
+    class="progress"
+    [ngStyle]="{ 'width.%': progress }"
+    [style.backgroundColor]="'#1db954'"
+  ></div>
 </div>

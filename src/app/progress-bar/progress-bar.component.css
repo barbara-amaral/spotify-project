@@ -6,21 +6,30 @@
   position: absolute;
   left: 33.8%;
   bottom: 10px;
+  transition: width 5s;
 }
 
 .progress {
   height: 100%;
-  background-color: #1db954;
   border-radius: 25px;
-  animation: animate 5s linear forwards;
 }
 
-@keyframes animate {
+.progress.playing {
+  animation: progressBarAnimation 5s linear forwards;
+  transition: none;
+}
+
+@keyframes progressBarAnimation {
   0% {
     width: 0;
+    background-color: #1db954;
   }
-
+  50% {
+    width: 50%;
+    background-color: #1db954;
+  }
   100% {
+    background-color: #1db954;
     width: 100%;
   }
 }
