@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { ProgressBarComponent } from '../progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-bottom-bar',
   standalone: true,
-  imports: [],
   templateUrl: './bottom-bar.component.html',
-  styleUrl: './bottom-bar.component.css'
+  styleUrl: './bottom-bar.component.css',
+  imports: [ProgressBarComponent],
 })
-export class BottomBarComponent {
-
-}
+export class BottomBarComponent {}
