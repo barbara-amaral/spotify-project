@@ -215,7 +215,8 @@
     height: 28px;
   }
 
-  .pause-icon {
+  .pause-icon,
+  .play-icon {
     width: 12px;
   }
 }
