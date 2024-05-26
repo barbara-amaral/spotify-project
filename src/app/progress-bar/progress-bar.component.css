@@ -10,7 +10,7 @@
 
 /* Responsivo */
 
-@media (max-width: 430px) {
+@media (max-width: 622px) {
   .progress-bar {
     width: 50%;
     left: 25.2%;

@@ -124,7 +124,7 @@
 
 /* Responsividade */
 
-@media (orientation: landscape) and (max-width: 915px) {
+@media (orientation: landscape) and (min-width: 430px) and (max-width: 500px) {
   .song-info {
     width: 15vh;
     height: 18vh;
@@ -160,7 +160,7 @@
   }
 }
 
-@media (max-width: 430px) {
+@media (max-width: 622px) {
   .playing-now::before,
   .playing-now::after {
     content: "";
@@ -169,7 +169,7 @@
 
   .playing-now {
     padding: 0;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
 
   .song-info {
@@ -177,10 +177,38 @@
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 623px) and (max-width: 1109px) {
   .playing-now::before,
   .playing-now::after {
     content: "";
     display: none;
+  }
+
+  .playing-now {
+    padding: 0 45px 0 45px;
+    justify-content: space-evenly;
+  }
+}
+
+@media (max-width: 345px) {
+  .playing-now {
+    padding: 0;
+    justify-content: center;
+  }
+
+  .foward-icon,
+  .back-icon,
+  .repeat-icon,
+  .shuffle-icon {
+    display: none;
+  }
+
+  .pause-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .pause-icon {
+    width: 12px;
   }
 }
