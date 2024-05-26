@@ -122,6 +122,13 @@
   fill: #121212;
 }
 
+.play-icon {
+  fill: #121212;
+}
+
+.play-icon:hover {
+  fill: #121212;
+}
 /* Responsividade */
 
 @media (orientation: landscape) and (min-width: 430px) and (max-width: 500px) {
