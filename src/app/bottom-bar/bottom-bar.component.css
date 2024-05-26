@@ -87,16 +87,6 @@
   width: 79px;
 }
 
-app-progress-bar {
-  background-color: #535353;
-  width: 32.8%;
-  height: 4px;
-  border-radius: 25px;
-  position: absolute;
-  left: 33.8%;
-  bottom: 10px;
-}
-
 .icon__playing {
   fill: #b3b3b3;
 }
