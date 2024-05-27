@@ -28,7 +28,9 @@ export class ProgressBarComponent {
   private animationFrameId: number | null = null;
   private startTime: number | null = null;
   private elapsedTime: number = 0;
-  private duration: number = 20000;
+  private duration: number = 233000;
+  private isDragging: boolean = false;
+  private elapsedTimeOnMouseDown: number = 0;
 
   ngAfterViewInit(): void {
     this.updateOutput(this.slider.nativeElement.value);
@@ -36,6 +38,12 @@ export class ProgressBarComponent {
       const input = event.target as HTMLInputElement;
       this.updateOutput(Number(input.value));
     };
+
+    this.slider.nativeElement.addEventListener(
+      'mousedown',
+      this.onMouseDown.bind(this)
+    );
+    document.addEventListener('mouseup', this.onMouseUp.bind(this));
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -86,7 +94,9 @@ export class ProgressBarComponent {
 
   resumeAnimation(): void {
     if (!this.animationFrameId) {
-      this.startTime = performance.now();
+      if (!this.isDragging) {
+        this.startTime = performance.now();
+      }
       this.animate();
     }
   }
@@ -96,5 +106,32 @@ export class ProgressBarComponent {
     this.elapsedTime = 0;
     this.startTime = performance.now();
     this.animate();
+  }
+
+  // Atualize o método onMouseDown para armazenar o tempo decorrido no momento do mouse down
+  onMouseDown(): void {
+    if (this.isPlaying) {
+      this.isDragging = true;
+      // Armazena o tempo decorrido no momento do mouse down
+      this.elapsedTimeOnMouseDown = this.elapsedTime;
+      this.pauseAnimation();
+    }
+  }
+
+  // Atualize o método onMouseUp para reiniciar a animação a partir do tempo decorrido no momento do mouse up
+  onMouseUp(): void {
+    if (this.isDragging) {
+      this.isDragging = false;
+      // Calcula o novo progresso com base na posição do slider no momento do mouse up
+      const newProgress =
+        (this.sliderValue / this.slider.nativeElement.max) * 100;
+      // Calcula o novo tempo inicial com base no novo progresso
+      const newStartTime =
+        performance.now() - (this.duration * newProgress) / 100;
+      // Reinicia a animação a partir do novo tempo inicial e define o tempo decorrido conforme necessário
+      this.startTime = newStartTime;
+      this.elapsedTime = (newProgress / 100) * this.duration;
+      this.resumeAnimation();
+    }
   }
 }

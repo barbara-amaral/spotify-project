@@ -19,6 +19,9 @@ export class BottomBarComponent {
 
   onProgressChanged(progress: number) {
     this.currentProgress = progress;
+    if (this.currentProgress === 100) {
+      this.play = false;
+    }
     console.log(`Current Progress: ${this.currentProgress}%`);
   }
 }
