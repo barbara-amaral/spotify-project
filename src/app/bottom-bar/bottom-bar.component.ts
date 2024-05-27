@@ -19,8 +19,8 @@ export class BottomBarComponent {
 
   onProgressChanged(progress: number) {
     this.currentProgress = progress;
-    if (this.currentProgress === 100) {
-      this.play = false;
+    if (this.currentProgress >= 99.9) {
+      this.toggle();
     }
   }
 }
