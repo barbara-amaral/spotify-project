@@ -49,6 +49,10 @@ export class ProgressBarComponent {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['isPlaying']) {
       if (this.isPlaying) {
+        if (this.progress >= 99 || this.progress >= 100) {
+          this.startAnimation();
+        }
+
         this.resumeAnimation();
       } else {
         this.pauseAnimation();
@@ -108,27 +112,21 @@ export class ProgressBarComponent {
     this.animate();
   }
 
-  // Atualize o método onMouseDown para armazenar o tempo decorrido no momento do mouse down
   onMouseDown(): void {
     if (this.isPlaying) {
       this.isDragging = true;
-      // Armazena o tempo decorrido no momento do mouse down
       this.elapsedTimeOnMouseDown = this.elapsedTime;
       this.pauseAnimation();
     }
   }
 
-  // Atualize o método onMouseUp para reiniciar a animação a partir do tempo decorrido no momento do mouse up
   onMouseUp(): void {
     if (this.isDragging) {
       this.isDragging = false;
-      // Calcula o novo progresso com base na posição do slider no momento do mouse up
       const newProgress =
         (this.sliderValue / this.slider.nativeElement.max) * 100;
-      // Calcula o novo tempo inicial com base no novo progresso
       const newStartTime =
         performance.now() - (this.duration * newProgress) / 100;
-      // Reinicia a animação a partir do novo tempo inicial e define o tempo decorrido conforme necessário
       this.startTime = newStartTime;
       this.elapsedTime = (newProgress / 100) * this.duration;
       this.resumeAnimation();

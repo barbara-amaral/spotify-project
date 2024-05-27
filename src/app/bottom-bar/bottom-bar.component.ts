@@ -22,6 +22,5 @@ export class BottomBarComponent {
     if (this.currentProgress === 100) {
       this.play = false;
     }
-    console.log(`Current Progress: ${this.currentProgress}%`);
   }
 }
